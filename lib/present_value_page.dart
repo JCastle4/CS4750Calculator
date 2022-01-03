@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -9,10 +11,9 @@ class PresentValue extends StatefulWidget {
 }
 
 class _PresentValueState extends State<PresentValue> {
-  double outPut =0;
 
-  final futureController = TextEditingController();
-  final uniformController = TextEditingController();
+  final futureController = TextEditingController(text: "0");
+  final uniformController = TextEditingController(text: "0");
   final rateController = TextEditingController();
   final periodsController = TextEditingController();
 
@@ -23,6 +24,21 @@ class _PresentValueState extends State<PresentValue> {
     rateController.dispose();
     periodsController.dispose();
     super.dispose();
+  }
+
+  double outPut =0;
+  double future  = 0;
+  double uniform = 0;
+  double rate = 0;
+  int periods = 0;
+
+  void updateText(){
+    setState(() {
+      future = double.parse(futureController.text);
+      uniform = double.parse(uniformController.text);
+      rate = double.parse(rateController.text);
+      periods = int.parse(periodsController.text);
+    });
   }
 
   @override
@@ -57,6 +73,7 @@ class _PresentValueState extends State<PresentValue> {
                         child: Container(
                           margin: EdgeInsets.only(right: 20, left: 5),
                           child: TextField(
+                            textAlign: TextAlign.right,
                             controller: futureController,
                             //new InputDecoration ?
                             decoration: InputDecoration(labelText: "Enter your number"),
@@ -88,6 +105,7 @@ class _PresentValueState extends State<PresentValue> {
                         child: Container(
                           margin: EdgeInsets.only(right: 20, left: 5),
                           child: TextField(
+                            textAlign: TextAlign.right,
                             controller: uniformController,
                             decoration: InputDecoration(labelText: "Enter your number"),
                             keyboardType: TextInputType.number,
@@ -118,6 +136,7 @@ class _PresentValueState extends State<PresentValue> {
                         child: Container(
                           margin: EdgeInsets.only(right: 20, left: 5),
                           child: TextField(
+                            textAlign: TextAlign.right,
                             controller: rateController,
                             decoration: InputDecoration(labelText: "Enter your number"),
                             keyboardType: TextInputType.number,
@@ -148,6 +167,7 @@ class _PresentValueState extends State<PresentValue> {
                         child: Container(
                           margin: EdgeInsets.only(right: 20, left: 5),
                           child: TextField(
+                            textAlign: TextAlign.right,
                             controller: periodsController,
                             decoration: InputDecoration(labelText: "Enter your number"),
                             keyboardType: TextInputType.number,
@@ -167,8 +187,10 @@ class _PresentValueState extends State<PresentValue> {
                       margin: EdgeInsets.only(left: 20, right: 5, top: 30),
                       child: ElevatedButton(
                           onPressed: (){
-                           // double num1 = double.parse(futureController.text())
-                            //outPut = futureController
+                            updateText();
+                            //outPut = future + uniform + rate + periods;
+                            double f = future * (pow(1+(rate/100),-periods));
+                            outPut = f;
 
                           },
                           child: Text(
