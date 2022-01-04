@@ -228,7 +228,7 @@ class _PresentValueState extends State<PresentValue> {
                           decoration: BoxDecoration(border: Border.all(width: 1)),
                           margin: EdgeInsets.only(left: 5, right: 20, top: 30),
                           child: Text(
-                            '$outPut',
+                            '${outPut.toStringAsFixed(2)}',
                             textAlign: TextAlign.right,
                             style: TextStyle(
                                 //backgroundColor: Colors.yellowAccent,
