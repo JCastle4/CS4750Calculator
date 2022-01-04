@@ -12,8 +12,8 @@ class PresentValue extends StatefulWidget {
 
 class _PresentValueState extends State<PresentValue> {
 
-  final futureController = TextEditingController(text: "0");
-  final uniformController = TextEditingController(text: "0");
+  final futureController = TextEditingController();
+  final uniformController = TextEditingController();
   final rateController = TextEditingController();
   final periodsController = TextEditingController();
 
@@ -36,7 +36,7 @@ class _PresentValueState extends State<PresentValue> {
     setState(() {
       future = double.parse(futureController.text);
       uniform = double.parse(uniformController.text);
-      rate = double.parse(rateController.text);
+      rate = double.parse(rateController.text)/100;
       periods = int.parse(periodsController.text);
     });
   }
@@ -72,7 +72,7 @@ class _PresentValueState extends State<PresentValue> {
                         flex: 50,
                         child: Container(
                           margin: EdgeInsets.only(right: 20, left: 5),
-                          child: TextField(
+                          child: TextFormField(
                             textAlign: TextAlign.right,
                             controller: futureController,
                             //new InputDecoration ?
@@ -188,9 +188,9 @@ class _PresentValueState extends State<PresentValue> {
                       child: ElevatedButton(
                           onPressed: (){
                             updateText();
-                            //outPut = future + uniform + rate + periods;
-                            double f = future * (pow(1+(rate/100),-periods));
-                            outPut = f;
+                            double F = future * (pow(1+(rate),-periods));
+                            double A = uniform * ((pow(1+rate,periods)-1)/(rate * pow(1+rate, periods)));
+                            outPut = F + A;
 
                           },
                           child: Text(
@@ -208,14 +208,13 @@ class _PresentValueState extends State<PresentValue> {
                           '$outPut',
                           textAlign: TextAlign.right,
                           style: TextStyle(
-                              backgroundColor: Colors.amberAccent,
-                            fontSize: 15,
+                              //backgroundColor: Colors.yellowAccent,
+                            fontSize: 20,
                           ),
 
                         ),
                       )
                   )
-
                 ],
               ),
             ],
