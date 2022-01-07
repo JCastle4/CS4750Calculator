@@ -112,7 +112,7 @@ class _DepreciationValueState extends State<DepreciationValue> {
                               textAlign: TextAlign.right,
                               controller: basisController,
                               //new InputDecoration ?
-                              decoration: InputDecoration(labelText: "B"),
+                              decoration: InputDecoration(labelText: "cost"),
                               keyboardType: TextInputType.numberWithOptions(signed: true, decimal: true),
                               inputFormatters: [
                                 FilteringTextInputFormatter.allow(RegExp(r'(^\-?\d*\.?\d*)'))
@@ -143,7 +143,7 @@ class _DepreciationValueState extends State<DepreciationValue> {
                             child: TextFormField(
                               textAlign: TextAlign.right,
                               controller: salvageController,
-                              decoration: InputDecoration(labelText: "S"),
+                              decoration: InputDecoration(labelText: "salvage"),
                               keyboardType: TextInputType.numberWithOptions(decimal: true),
                               inputFormatters: <TextInputFormatter>[
                                 FilteringTextInputFormatter.allow(RegExp(r'(^\-?\d*\.?\d*)'))
@@ -161,7 +161,7 @@ class _DepreciationValueState extends State<DepreciationValue> {
                           child: Container(
                               margin: EdgeInsets.only(left: 20, right: 5),
                               child: Text(
-                                'Life',
+                                'Depreciation Life',
                                 style: TextStyle(
                                   fontSize: 15,
                                 ),
@@ -181,7 +181,7 @@ class _DepreciationValueState extends State<DepreciationValue> {
                               },
                               textAlign: TextAlign.right,
                               controller: lifeController,
-                              decoration: InputDecoration(labelText: "rate"),
+                              decoration: InputDecoration(labelText: "life"),
                               keyboardType: TextInputType.number,
                               inputFormatters: <TextInputFormatter>[
                                 FilteringTextInputFormatter.digitsOnly
@@ -251,7 +251,16 @@ class _DepreciationValueState extends State<DepreciationValue> {
                                   outPut = (life - periods + 1) * (basis - salvage)/ sum;
                                 }
                                 else if(dropdownvalue == 'Double Decline Balance Method'){
-                                  outPut = 0;
+                                  double dt = 0;
+                                  double bookValue = basis;
+
+                                  for(int i = 1; i <= periods; i++){
+                                    dt = (2/life)*(bookValue);
+                                    if(bookValue - dt < 0){ dt = 0;}
+                                    else if(bookValue - dt < salvage){ dt = bookValue - salvage;}
+                                    bookValue -=dt;
+                                  }
+                                  outPut = dt;
                                 }
                               }
                             },
