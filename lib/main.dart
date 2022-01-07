@@ -1,4 +1,7 @@
+import 'package:economics_calulator_cs4750/depreciation_page.dart';
+import 'package:economics_calulator_cs4750/future_value_page.dart';
 import 'package:economics_calulator_cs4750/present_value_page.dart';
+import 'package:economics_calulator_cs4750/uniform_value_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -63,7 +66,12 @@ class _MyHomePageState extends State<MyHomePage> {
               width: 300,
               height: 50,
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FutureValue()));
+                  },
                   child: const Text(
                     'Future Value',
                     style: TextStyle(
@@ -76,7 +84,12 @@ class _MyHomePageState extends State<MyHomePage> {
               width: 300,
               height: 50,
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => UniformValue()));
+                  },
                   child: const Text(
                     'Uniform Series',
                     style: TextStyle(
@@ -103,7 +116,10 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 50,
               child: ElevatedButton(
                   onPressed: () {
-
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DepreciationValue()));
                   },
                   child: const Text(
                     'Depreciation',

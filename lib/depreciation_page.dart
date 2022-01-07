@@ -32,9 +32,9 @@ class _DepreciationValueState extends State<DepreciationValue> {
   }
 
   double outPut =0;
-  double basis  = 100;
-  double salvage = 10;
-  double life = 10;
+  double basis  = 0;
+  double salvage = 0;
+  double life = 0;
   int periods = 0;
 
   void updateText(){
@@ -44,7 +44,7 @@ class _DepreciationValueState extends State<DepreciationValue> {
       else{basis = double.parse(basisController.text);}
       if(salvageController.text.isEmpty){salvage=0;}
       else{salvage = double.parse(salvageController.text);}
-      life = double.parse(lifeController.text)/100;
+      life = double.parse(lifeController.text);
       periods = int.parse(periodsController.text);
     });
   }
@@ -54,7 +54,7 @@ class _DepreciationValueState extends State<DepreciationValue> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Present Value',
+            'Depreciation',
             style: TextStyle(fontSize: 30),
           ),
         ),
@@ -104,7 +104,7 @@ class _DepreciationValueState extends State<DepreciationValue> {
                             margin: EdgeInsets.only(right: 20, left: 5),
                             child: TextFormField(
                               validator: (value){
-                                if(value!.isNotEmpty && double.parse(value) > 0){
+                                if(value!.isNotEmpty){
                                   return null;
                                 }
                                 else return 'required';
@@ -113,9 +113,9 @@ class _DepreciationValueState extends State<DepreciationValue> {
                               controller: basisController,
                               //new InputDecoration ?
                               decoration: InputDecoration(labelText: "B"),
-                              keyboardType: TextInputType.number,
-                              inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.digitsOnly
+                              keyboardType: TextInputType.numberWithOptions(signed: true, decimal: true),
+                              inputFormatters: [
+                                FilteringTextInputFormatter.allow(RegExp(r'(^\-?\d*\.?\d*)'))
                               ],
                             ),
                           )
@@ -144,9 +144,10 @@ class _DepreciationValueState extends State<DepreciationValue> {
                               textAlign: TextAlign.right,
                               controller: salvageController,
                               decoration: InputDecoration(labelText: "S"),
-                              keyboardType: TextInputType.number,
+                              keyboardType: TextInputType.numberWithOptions(decimal: true),
                               inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.digitsOnly
+                                FilteringTextInputFormatter.allow(RegExp(r'(^\-?\d*\.?\d*)'))
+                                //FilteringTextInputFormatter.digitsOnly
                               ],
                             ),
                           )
@@ -236,18 +237,23 @@ class _DepreciationValueState extends State<DepreciationValue> {
                         child: ElevatedButton(
                             onPressed: (){
                               if(_formKey.currentState!.validate()) {
+                                updateText();
                                 if(dropdownvalue == 'Straight Line Method'){
                                   outPut = ((basis-salvage)/life);
                                 }
                                 else if( dropdownvalue =='Sum-of-Years-Digits Method'){
-                                  outPut = (0);
+                                  int i = 0;
+                                  int sum = 0;
+                                  while(i < life){
+                                    i+=1;
+                                    sum += i;
+                                  }
+                                  outPut = (life - periods + 1) * (basis - salvage)/ sum;
                                 }
                                 else if(dropdownvalue == 'Double Decline Balance Method'){
                                   outPut = 0;
                                 }
-                                outPut = ((basis-salvage)/life);
                               }
-
                             },
                             child: Text(
                               "ENTER",

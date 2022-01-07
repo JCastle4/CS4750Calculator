@@ -83,9 +83,9 @@ class _UniformValueState extends State<UniformValue> {
                               controller: presentController,
                               //new InputDecoration ?
                               decoration: InputDecoration(labelText: "pv"),
-                              keyboardType: TextInputType.number,
+                              keyboardType: TextInputType.numberWithOptions(),
                               inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.digitsOnly
+                                FilteringTextInputFormatter.allow(RegExp(r'(^\-?\d*\.?\d*)'))
                               ],
                             ),
                           )
@@ -114,9 +114,9 @@ class _UniformValueState extends State<UniformValue> {
                               textAlign: TextAlign.right,
                               controller: futureController,
                               decoration: InputDecoration(labelText: "fv"),
-                              keyboardType: TextInputType.number,
+                              keyboardType: TextInputType.numberWithOptions(),
                               inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.digitsOnly
+                                FilteringTextInputFormatter.allow(RegExp(r'(^\-?\d*\.?\d*)'))
                               ],
                             ),
                           )
@@ -151,9 +151,9 @@ class _UniformValueState extends State<UniformValue> {
                               textAlign: TextAlign.right,
                               controller: rateController,
                               decoration: InputDecoration(labelText: "rate"),
-                              keyboardType: TextInputType.number,
+                              keyboardType: TextInputType.numberWithOptions(),
                               inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.digitsOnly
+                                FilteringTextInputFormatter.allow(RegExp(r'(^\d*\.?\d*)'))
                               ],
                             ),
                           )

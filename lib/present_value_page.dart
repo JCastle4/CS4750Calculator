@@ -84,9 +84,9 @@ class _PresentValueState extends State<PresentValue> {
                               controller: futureController,
                               //new InputDecoration ?
                               decoration: InputDecoration(labelText: "fv"),
-                              keyboardType: TextInputType.number,
+                              keyboardType: TextInputType.numberWithOptions(signed: true, decimal: true),
                               inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.digitsOnly
+                                FilteringTextInputFormatter.allow(RegExp(r'(^\-?\d*\.?\d*)'))
                               ],
                             ),
                           )
@@ -115,9 +115,9 @@ class _PresentValueState extends State<PresentValue> {
                               textAlign: TextAlign.right,
                               controller: uniformController,
                               decoration: InputDecoration(labelText: "pmt"),
-                              keyboardType: TextInputType.number,
+                              keyboardType: TextInputType.numberWithOptions(signed: true, decimal: true),
                               inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.digitsOnly
+                                FilteringTextInputFormatter.allow(RegExp(r'(^\-?\d*\.?\d*)'))
                               ],
                             ),
                           )
@@ -154,7 +154,7 @@ class _PresentValueState extends State<PresentValue> {
                               decoration: InputDecoration(labelText: "rate"),
                               keyboardType: TextInputType.number,
                               inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.digitsOnly
+                                FilteringTextInputFormatter.allow(RegExp(r'(^\d*\.?\d*)'))
                               ],
                             ),
                           )

@@ -83,9 +83,9 @@ class _FutureValueState extends State<FutureValue> {
                               controller: presentController,
                               //new InputDecoration ?
                               decoration: InputDecoration(labelText: "pv"),
-                              keyboardType: TextInputType.number,
+                              keyboardType: TextInputType.numberWithOptions(signed: true, decimal: true),
                               inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.digitsOnly
+                                FilteringTextInputFormatter.allow(RegExp(r'(^\-?\d*\.?\d*)'))
                               ],
                             ),
                           )
@@ -114,9 +114,9 @@ class _FutureValueState extends State<FutureValue> {
                               textAlign: TextAlign.right,
                               controller: uniformController,
                               decoration: InputDecoration(labelText: "pmt"),
-                              keyboardType: TextInputType.number,
+                              keyboardType: TextInputType.numberWithOptions(),
                               inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.digitsOnly
+                                FilteringTextInputFormatter.allow(RegExp(r'(^\-?\d*\.?\d*)'))
                               ],
                             ),
                           )
@@ -151,9 +151,9 @@ class _FutureValueState extends State<FutureValue> {
                               textAlign: TextAlign.right,
                               controller: rateController,
                               decoration: InputDecoration(labelText: "rate"),
-                              keyboardType: TextInputType.number,
+                              keyboardType: TextInputType.numberWithOptions(decimal: true),
                               inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.digitsOnly
+                                FilteringTextInputFormatter.allow(RegExp(r'(^\d*\.?\d*)'))
                               ],
                             ),
                           )
