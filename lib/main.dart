@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Economics Calculator'),
+      home: const MyHomePage(title: 'Engineering Economics Calculator'),
     );
   }
 }
@@ -38,6 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        //automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(
@@ -97,19 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   )),
             ),
-            Container(
-              margin: EdgeInsets.only(bottom: 5, top: 5),
-              width: 300,
-              height: 50,
-              child: ElevatedButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'Interest Rate',
-                    style: TextStyle(
-                      fontSize: 30,
-                    ),
-                  )),
-            ),
+
             Container(
               margin: EdgeInsets.only(bottom: 10, top: 5),
               width: 300,

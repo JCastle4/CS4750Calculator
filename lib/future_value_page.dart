@@ -1,4 +1,8 @@
 import 'dart:math';
+import 'package:economics_calulator_cs4750/depreciation_page.dart';
+import 'package:economics_calulator_cs4750/main.dart';
+import 'package:economics_calulator_cs4750/present_value_page.dart';
+import 'package:economics_calulator_cs4750/uniform_value_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -53,6 +57,20 @@ class _FutureValueState extends State<FutureValue> {
             'Future Value',
             style: TextStyle(fontSize: 30),
           ),
+          backgroundColor: Colors.deepPurpleAccent,
+
+          //automaticallyImplyLeading: false,
+          actions: [
+            IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyHomePage(title: "Engineering Economics Calculator")),
+                );
+              },
+            ),
+          ],
         ),
         body: Center(
           child: Form(
@@ -204,6 +222,7 @@ class _FutureValueState extends State<FutureValue> {
                       child: Container(
                         margin: EdgeInsets.only(left: 20, right: 5, top: 30),
                         child: ElevatedButton(
+                            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.deepPurpleAccent)),
                             onPressed: (){
                               if(_formKey.currentState!.validate()) {
                                 updateText();
@@ -242,6 +261,48 @@ class _FutureValueState extends State<FutureValue> {
               ],
             ),
           ),
-        ));
+        ),
+      bottomNavigationBar: Container(
+        height: 60,
+        decoration: BoxDecoration(
+          color: Colors.deepPurpleAccent,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            ElevatedButton(
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.red)),
+                onPressed: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => PresentValue()));
+                },
+                child: Text('P')
+            ),
+            ElevatedButton(
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.orange)),
+                onPressed: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => UniformValue()));
+                },
+                child: Text('A')
+            ),
+            ElevatedButton(
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green)),
+                onPressed: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DepreciationValue()));
+                },
+                child: Text('dt')
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
