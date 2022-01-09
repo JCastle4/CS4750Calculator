@@ -36,8 +36,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+        appBar: AppBar(
         title: Text(widget.title),
+          backgroundColor: Color(0xFF4C3C54)
         //automaticallyImplyLeading: false,
       ),
       body: Center(
@@ -49,6 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
               width: 300,
               height: 50,
               child: ElevatedButton(
+                  style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFFD1667B))),
                   onPressed: () {
                     Navigator.push(
                         context,
@@ -67,6 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
               width: 300,
               height: 50,
               child: ElevatedButton(
+                  style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFFF8B66D))),
                   onPressed: () {
                     Navigator.push(
                         context,
@@ -85,6 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
               width: 300,
               height: 50,
               child: ElevatedButton(
+                  style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFFF8DE90))),
                   onPressed: () {
                     Navigator.push(
                         context,
@@ -104,6 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
               width: 300,
               height: 50,
               child: ElevatedButton(
+                  style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFF789E77))),
                   onPressed: () {
                     Navigator.push(
                         context,

@@ -55,13 +55,15 @@ class _UniformValueState extends State<UniformValue> {
         appBar: AppBar(
           title: Text(
             'Uniform Value',
-            style: TextStyle(fontSize: 30),
+            style: TextStyle(fontSize: 30, color: Color(0xFF4C3C54),
+            ),
           ),
-          backgroundColor: Colors.amber,
+          backgroundColor: Color(0xFFF8DE90),
           //automaticallyImplyLeading: false,
+          leading: BackButton(color: Color(0xFF4C3C54)),
           actions: [
             IconButton(
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.home, color: Color(0xFF4C3C54)),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -87,6 +89,7 @@ class _UniformValueState extends State<UniformValue> {
                                 'Present Value',
                                 style: TextStyle(
                                   fontSize: 15,
+
                                 ),
                               )
                           )
@@ -221,7 +224,7 @@ class _UniformValueState extends State<UniformValue> {
                       child: Container(
                         margin: EdgeInsets.only(left: 20, right: 5, top: 30),
                         child: ElevatedButton(
-                            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.amber)),
+                            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFFF8DE90))),
                             onPressed: (){
                               if(_formKey.currentState!.validate()) {
                                 updateText();
@@ -234,6 +237,7 @@ class _UniformValueState extends State<UniformValue> {
                             },
                             child: Text(
                               "ENTER",
+                                style: TextStyle(color: Color(0xFF4C3C54),)
                             )
                         ),
                       ),
@@ -263,40 +267,46 @@ class _UniformValueState extends State<UniformValue> {
       bottomNavigationBar: Container(
         height: 60,
         decoration: BoxDecoration(
-          color: Colors.amber,
+          color: Color(0xFFF8DE90),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             ElevatedButton(
-                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.red)),
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFFD1667B))),
                 onPressed: (){
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => PresentValue()));
                 },
-                child: Text('P')
+                child: Text('P',
+                    style: TextStyle(color: Color(0xFF4C3C54),)
+                )
             ),
             ElevatedButton(
-                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.deepPurpleAccent)),
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFFF8B66D))),
                 onPressed: (){
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => FutureValue()));
                 },
-                child: Text('F')
+                child: Text('F',
+                    style: TextStyle(color: Color(0xFF4C3C54),)
+                )
             ),
             ElevatedButton(
-                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green)),
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFF789E77))),
                 onPressed: (){
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => DepreciationValue()));
                 },
-                child: Text('dt')
+                child: Text('dt',
+                    style: TextStyle(color: Color(0xFF4C3C54),)
+                )
             ),
           ],
         ),

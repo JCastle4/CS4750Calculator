@@ -58,7 +58,7 @@ class _PresentValueState extends State<PresentValue> {
             'Present Value',
             style: TextStyle(fontSize: 30),
           ),
-          backgroundColor: Colors.red,
+          backgroundColor: Color(0xFFD1667B),
           //automaticallyImplyLeading: false,
           actions: [
             IconButton(
@@ -222,7 +222,7 @@ class _PresentValueState extends State<PresentValue> {
                       child: Container(
                         margin: EdgeInsets.only(left: 20, right: 5, top: 30),
                         child: ElevatedButton(
-                            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.red)),
+                            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFFD1667B))),
                             onPressed: (){
                               if(_formKey.currentState!.validate()) {
                                 updateText();
@@ -265,40 +265,46 @@ class _PresentValueState extends State<PresentValue> {
       bottomNavigationBar: Container(
         height: 60,
         decoration: BoxDecoration(
-          color: Colors.red,
+          color: Color(0xFFD1667B),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             ElevatedButton(
-                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.deepPurpleAccent)),
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFFF8B66D))),
                 onPressed: (){
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => FutureValue()));
                 },
-                child: Text('F')
+                child: Text('F',
+                    style: TextStyle(color: Color(0xFF4C3C54),)
+                )
             ),
             ElevatedButton(
-                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.orange)),
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFFF8DE90))),
                 onPressed: (){
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => UniformValue()));
                 },
-                child: Text('A')
+                child: Text('A',
+                    style: TextStyle(color: Color(0xFF4C3C54),)
+                )
             ),
             ElevatedButton(
-                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green)),
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFF789E77))),
                 onPressed: (){
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => DepreciationValue()));
                 },
-                child: Text('dt')
+                child: Text('dt',
+                style: TextStyle(color: Color(0xFF4C3C54),)
+                )
             ),
           ],
         ),
