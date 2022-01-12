@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:economics_calulator_cs4750/depreciation_page.dart';
 import 'package:economics_calulator_cs4750/future_value_page.dart';
 import 'package:economics_calulator_cs4750/main.dart';
@@ -38,9 +37,9 @@ class _PresentValueState extends State<PresentValue> {
   double rate = 0;
   int periods = 0;
 
+  //storing TextFormField values
   void updateText(){
     setState(() {
-
       if(futureController.text.isEmpty){future=0;}
       else{future = double.parse(futureController.text);}
       if(uniformController.text.isEmpty){uniform=0;}
@@ -55,11 +54,10 @@ class _PresentValueState extends State<PresentValue> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Present Value',
+            'Present Value - P',
             style: TextStyle(fontSize: 30),
           ),
           backgroundColor: Color(0xFFD1667B),
-          //automaticallyImplyLeading: false,
           actions: [
             IconButton(
               icon: Icon(Icons.home),
@@ -72,12 +70,16 @@ class _PresentValueState extends State<PresentValue> {
             ),
           ],
         ),
+
         body: Center(
           child: Form(
             key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: ListView(
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(20.0),
+              //mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                //getting future value
                 Row(
                     children: [
                       Expanded(
@@ -99,10 +101,10 @@ class _PresentValueState extends State<PresentValue> {
                             child: TextFormField(
                               textAlign: TextAlign.right,
                               controller: futureController,
-                              //new InputDecoration ?
                               decoration: InputDecoration(labelText: "fv"),
                               keyboardType: TextInputType.numberWithOptions(signed: true, decimal: true),
                               inputFormatters: <TextInputFormatter>[
+                                //regex allows for negatives and decimals
                                 FilteringTextInputFormatter.allow(RegExp(r'(^\-?\d*\.?\d*)'))
                               ],
                             ),
@@ -110,6 +112,7 @@ class _PresentValueState extends State<PresentValue> {
                       )
                     ]
                 ),
+                //getting uniform value
                 Row(
                     children: [
                       Expanded(
@@ -134,6 +137,7 @@ class _PresentValueState extends State<PresentValue> {
                               decoration: InputDecoration(labelText: "pmt"),
                               keyboardType: TextInputType.numberWithOptions(signed: true, decimal: true),
                               inputFormatters: <TextInputFormatter>[
+                                //regex allows for negatives and decimals
                                 FilteringTextInputFormatter.allow(RegExp(r'(^\-?\d*\.?\d*)'))
                               ],
                             ),
@@ -141,6 +145,7 @@ class _PresentValueState extends State<PresentValue> {
                       )
                     ]
                 ),
+                //getting interest rate
                 Row(
                     children: [
                       Expanded(
@@ -171,6 +176,7 @@ class _PresentValueState extends State<PresentValue> {
                               decoration: InputDecoration(labelText: "rate"),
                               keyboardType: TextInputType.number,
                               inputFormatters: <TextInputFormatter>[
+                                //regex allows for decimals
                                 FilteringTextInputFormatter.allow(RegExp(r'(^\d*\.?\d*)'))
                               ],
                             ),
@@ -178,6 +184,7 @@ class _PresentValueState extends State<PresentValue> {
                       )
                     ]
                 ),
+                //getting the period
                 Row(
                     children: [
                       Expanded(
@@ -215,6 +222,7 @@ class _PresentValueState extends State<PresentValue> {
                       )
                     ]
                 ),
+                //enter button and output textField
                 Row(
                   children: [
                     Expanded(
@@ -224,6 +232,7 @@ class _PresentValueState extends State<PresentValue> {
                         child: ElevatedButton(
                             style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFFD1667B))),
                             onPressed: (){
+                              //formula for getting present value given a future value + present given uniform value
                               if(_formKey.currentState!.validate()) {
                                 updateText();
                                 double F = future * (pow(1 + (rate), -periods));
@@ -232,7 +241,6 @@ class _PresentValueState extends State<PresentValue> {
                                         (rate * pow(1 + rate, periods)));
                                 outPut = F + A;
                               }
-
                             },
                             child: Text(
                               "ENTER",
@@ -249,10 +257,8 @@ class _PresentValueState extends State<PresentValue> {
                             '${outPut.toStringAsFixed(2)}',
                             textAlign: TextAlign.right,
                             style: TextStyle(
-                                //backgroundColor: Colors.yellowAccent,
                               fontSize: 20,
                             ),
-
                           ),
                         )
                     )
@@ -267,6 +273,7 @@ class _PresentValueState extends State<PresentValue> {
         decoration: BoxDecoration(
           color: Color(0xFFD1667B),
         ),
+        //buttons link to the other pages
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [

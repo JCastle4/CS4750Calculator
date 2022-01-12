@@ -37,9 +37,9 @@ class _FutureValueState extends State<FutureValue> {
   double rate = 0;
   int periods = 0;
 
+  //storing TextFormField values
   void updateText(){
     setState(() {
-
       if(presentController.text.isEmpty){present=0;}
       else{present = double.parse(presentController.text);}
       if(uniformController.text.isEmpty){uniform=0;}
@@ -54,12 +54,10 @@ class _FutureValueState extends State<FutureValue> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Future Value',
+            'Future Value - F',
             style: TextStyle(fontSize: 30),//, color: Color(0xFF4C3C54)),
           ),
           backgroundColor: Color(0xFFF8B66D),
-
-          //automaticallyImplyLeading: false,
           actions: [
             IconButton(
               icon: Icon(Icons.home),
@@ -72,12 +70,16 @@ class _FutureValueState extends State<FutureValue> {
             ),
           ],
         ),
+
         body: Center(
           child: Form(
             key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: ListView(
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(20.0),
+              //mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                //getting present value
                 Row(
                     children: [
                       Expanded(
@@ -103,6 +105,7 @@ class _FutureValueState extends State<FutureValue> {
                               decoration: InputDecoration(labelText: "pv"),
                               keyboardType: TextInputType.numberWithOptions(signed: true, decimal: true),
                               inputFormatters: <TextInputFormatter>[
+                                //regex allows for negatives and decimals
                                 FilteringTextInputFormatter.allow(RegExp(r'(^\-?\d*\.?\d*)'))
                               ],
                             ),
@@ -110,6 +113,7 @@ class _FutureValueState extends State<FutureValue> {
                       )
                     ]
                 ),
+                //getting future value
                 Row(
                     children: [
                       Expanded(
@@ -134,6 +138,7 @@ class _FutureValueState extends State<FutureValue> {
                               decoration: InputDecoration(labelText: "pmt"),
                               keyboardType: TextInputType.numberWithOptions(),
                               inputFormatters: <TextInputFormatter>[
+                                //regex allows for negatives and decimals
                                 FilteringTextInputFormatter.allow(RegExp(r'(^\-?\d*\.?\d*)'))
                               ],
                             ),
@@ -141,6 +146,7 @@ class _FutureValueState extends State<FutureValue> {
                       )
                     ]
                 ),
+                //getting interest rate
                 Row(
                     children: [
                       Expanded(
@@ -178,6 +184,7 @@ class _FutureValueState extends State<FutureValue> {
                       )
                     ]
                 ),
+                //getting the period
                 Row(
                     children: [
                       Expanded(
@@ -215,6 +222,7 @@ class _FutureValueState extends State<FutureValue> {
                       )
                     ]
                 ),
+                //enter button and output textField
                 Row(
                   children: [
                     Expanded(
@@ -224,6 +232,7 @@ class _FutureValueState extends State<FutureValue> {
                         child: ElevatedButton(
                             style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFFF8B66D))),
                             onPressed: (){
+                              //formula for getting future value given a present value + future given uniform value
                               if(_formKey.currentState!.validate()) {
                                 updateText();
                                 double P = present * (pow(1 + (rate), periods));
@@ -232,7 +241,6 @@ class _FutureValueState extends State<FutureValue> {
                                         (rate));
                                 outPut = P + A;
                               }
-
                             },
                             child: Text(
                               "ENTER",
@@ -249,10 +257,8 @@ class _FutureValueState extends State<FutureValue> {
                             '${outPut.toStringAsFixed(2)}',
                             textAlign: TextAlign.right,
                             style: TextStyle(
-                              //backgroundColor: Colors.yellowAccent,
                               fontSize: 20,
                             ),
-
                           ),
                         )
                     )
@@ -267,6 +273,7 @@ class _FutureValueState extends State<FutureValue> {
         decoration: BoxDecoration(
           color: Color(0xFFF8B66D),
         ),
+        //buttons link to the other pages
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [

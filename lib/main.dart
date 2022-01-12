@@ -45,6 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            //Button navigates to present_value_page.dart
             Container(
               margin: EdgeInsets.only(bottom: 5, top: 10),
               width: 300,
@@ -58,12 +59,14 @@ class _MyHomePageState extends State<MyHomePage> {
                             builder: (context) => PresentValue()));
                   },
                   child: Text(
-                    'Present Value',
+                    'Present Value - P',
                     style: TextStyle(
                       fontSize: 30,
                     ),
-                  )),
+                  )
+              ),
             ),
+            //Button navigates to future_value_page.dart
             Container(
               margin: EdgeInsets.only(bottom: 5, top: 5),
               width: 300,
@@ -77,12 +80,14 @@ class _MyHomePageState extends State<MyHomePage> {
                             builder: (context) => FutureValue()));
                   },
                   child: const Text(
-                    'Future Value',
+                    'Future Value - F',
                     style: TextStyle(
                       fontSize: 30,
                     ),
-                  )),
+                  )
+              ),
             ),
+            //Button navigates to uniform_value_page.dart
             Container(
               margin: EdgeInsets.only(bottom: 5, top: 5),
               width: 300,
@@ -96,13 +101,14 @@ class _MyHomePageState extends State<MyHomePage> {
                             builder: (context) => UniformValue()));
                   },
                   child: const Text(
-                    'Uniform Series',
+                    'Uniform Value - A',
                     style: TextStyle(
                       fontSize: 30,
                     ),
-                  )),
+                  )
+              ),
             ),
-
+            //Button navigates to depreciation_page.dart
             Container(
               margin: EdgeInsets.only(bottom: 10, top: 5),
               width: 300,
@@ -116,11 +122,12 @@ class _MyHomePageState extends State<MyHomePage> {
                             builder: (context) => DepreciationValue()));
                   },
                   child: const Text(
-                    'Depreciation',
+                    'Depreciation - dt',
                     style: TextStyle(
                       fontSize: 30,
                     ),
-                  )),
+                  )
+              ),
             ),
           ],
         ),

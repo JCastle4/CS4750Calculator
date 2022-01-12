@@ -41,9 +41,9 @@ class _DepreciationValueState extends State<DepreciationValue> {
   double life = 0;
   int periods = 0;
 
+  //storing TextFormField values
   void updateText(){
     setState(() {
-
       if(basisController.text.isEmpty){basis=0;}
       else{basis = double.parse(basisController.text);}
       if(salvageController.text.isEmpty){salvage=0;}
@@ -58,11 +58,10 @@ class _DepreciationValueState extends State<DepreciationValue> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Depreciation',
+            'Depreciation - dt',
             style: TextStyle(fontSize: 30),
           ),
           backgroundColor: Color(0xFF789E77),
-          //automaticallyImplyLeading: false,
           actions: [
             IconButton(
               icon: Icon(Icons.home),
@@ -75,12 +74,15 @@ class _DepreciationValueState extends State<DepreciationValue> {
             ),
           ],
         ),
+
         body: Center(
           child: Form(
             key: _formKey,
             child: ListView(
-              //mainAxisAlignment: MainAxisAlignment.center,
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(20.0),
               children: <Widget>[
+                //dropdown menu
                 Container(
                   margin: EdgeInsets.only(left: 40, right: 40, top: 30),
                   child: DropdownButton(
@@ -101,6 +103,7 @@ class _DepreciationValueState extends State<DepreciationValue> {
                   ),
                 ),
 
+                //getting cost basis
                 Row(
                     children: [
                       Expanded(
@@ -128,7 +131,6 @@ class _DepreciationValueState extends State<DepreciationValue> {
                               },
                               textAlign: TextAlign.right,
                               controller: basisController,
-                              //new InputDecoration ?
                               decoration: InputDecoration(labelText: "cost"),
                               keyboardType: TextInputType.numberWithOptions(signed: true, decimal: true),
                               inputFormatters: [
@@ -139,6 +141,8 @@ class _DepreciationValueState extends State<DepreciationValue> {
                       )
                     ]
                 ),
+
+                //getting salvage value
                 Row(
                     children: [
                       Expanded(
@@ -171,6 +175,8 @@ class _DepreciationValueState extends State<DepreciationValue> {
                       )
                     ]
                 ),
+
+                //getting depreciation life
                 Row(
                     children: [
                       Expanded(
@@ -208,6 +214,8 @@ class _DepreciationValueState extends State<DepreciationValue> {
                       )
                     ]
                 ),
+
+                //getting period
                 Row(
                     children: [
                       Expanded(
@@ -245,6 +253,8 @@ class _DepreciationValueState extends State<DepreciationValue> {
                       )
                     ]
                 ),
+
+                //enter button and output textField
                 Row(
                   children: [
                     Expanded(
@@ -256,6 +266,8 @@ class _DepreciationValueState extends State<DepreciationValue> {
                             onPressed: (){
                               if(_formKey.currentState!.validate()) {
                                 updateText();
+
+                                //different formulas depending on the dropdown option
                                 if(dropdownvalue == 'Straight Line Method'){
                                   outPut = ((basis-salvage)/life);
                                 }
@@ -297,7 +309,6 @@ class _DepreciationValueState extends State<DepreciationValue> {
                             '${outPut.toStringAsFixed(2)}',
                             textAlign: TextAlign.right,
                             style: TextStyle(
-                              //backgroundColor: Colors.yellowAccent,
                               fontSize: 20,
                             ),
 
@@ -315,6 +326,7 @@ class _DepreciationValueState extends State<DepreciationValue> {
         decoration: BoxDecoration(
           color: Color(0xFF789E77),
         ),
+        //buttons link to the other pages
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [

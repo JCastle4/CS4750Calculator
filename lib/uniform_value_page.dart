@@ -37,9 +37,9 @@ class _UniformValueState extends State<UniformValue> {
   double rate = 0;
   int periods = 0;
 
+  //storing TextFormField values
   void updateText(){
     setState(() {
-
       if(presentController.text.isEmpty){present=0;}
       else{present = double.parse(presentController.text);}
       if(futureController.text.isEmpty){future=0;}
@@ -54,12 +54,11 @@ class _UniformValueState extends State<UniformValue> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Uniform Value',
+            'Uniform Value - A',
             style: TextStyle(fontSize: 30, color: Color(0xFF4C3C54),
             ),
           ),
           backgroundColor: Color(0xFFF8DE90),
-          //automaticallyImplyLeading: false,
           leading: BackButton(color: Color(0xFF4C3C54)),
           actions: [
             IconButton(
@@ -73,12 +72,16 @@ class _UniformValueState extends State<UniformValue> {
             ),
           ],
         ),
+
         body: Center(
           child: Form(
             key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: ListView(
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(20.0),
+              //mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                //getting present value
                 Row(
                     children: [
                       Expanded(
@@ -105,6 +108,7 @@ class _UniformValueState extends State<UniformValue> {
                               decoration: InputDecoration(labelText: "pv"),
                               keyboardType: TextInputType.numberWithOptions(),
                               inputFormatters: <TextInputFormatter>[
+                                //regex allows for negatives and decimals
                                 FilteringTextInputFormatter.allow(RegExp(r'(^\-?\d*\.?\d*)'))
                               ],
                             ),
@@ -112,6 +116,7 @@ class _UniformValueState extends State<UniformValue> {
                       )
                     ]
                 ),
+                //getting future value
                 Row(
                     children: [
                       Expanded(
@@ -136,6 +141,7 @@ class _UniformValueState extends State<UniformValue> {
                               decoration: InputDecoration(labelText: "fv"),
                               keyboardType: TextInputType.numberWithOptions(),
                               inputFormatters: <TextInputFormatter>[
+                                //regex allows for negatives and decimals
                                 FilteringTextInputFormatter.allow(RegExp(r'(^\-?\d*\.?\d*)'))
                               ],
                             ),
@@ -143,6 +149,7 @@ class _UniformValueState extends State<UniformValue> {
                       )
                     ]
                 ),
+                //getting interest rate
                 Row(
                     children: [
                       Expanded(
@@ -180,6 +187,7 @@ class _UniformValueState extends State<UniformValue> {
                       )
                     ]
                 ),
+                //getting the period
                 Row(
                     children: [
                       Expanded(
@@ -217,6 +225,7 @@ class _UniformValueState extends State<UniformValue> {
                       )
                     ]
                 ),
+                //enter button and output textField
                 Row(
                   children: [
                     Expanded(
@@ -226,6 +235,7 @@ class _UniformValueState extends State<UniformValue> {
                         child: ElevatedButton(
                             style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xFFF8DE90))),
                             onPressed: (){
+                              //formula for getting uniform value given a present value + uniform given future value
                               if(_formKey.currentState!.validate()) {
                                 updateText();
                                 double P = present * ((rate * (pow(1 + rate, periods)))
@@ -269,6 +279,7 @@ class _UniformValueState extends State<UniformValue> {
         decoration: BoxDecoration(
           color: Color(0xFFF8DE90),
         ),
+        //buttons link to the other pages
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
