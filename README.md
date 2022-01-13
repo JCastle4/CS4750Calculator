@@ -1,16 +1,13 @@
 # economics_calulator_cs4750
 
-A new Flutter project.
+An economic factor calculator for solving for a present value, future value, uniform value, and depreciation. Designed for IME 4030 - Fiscal Implications in Technical Decision Making students at CPP to easily calculate factors without the use of MS Excel. Based off of the format and equations of Engineering Economics Analysis 14th Edition. 
 
-## Getting Started
+This program was created using
+## How to use
 
-This project is a starting point for a Flutter application.
+To solve for each factor, input the present value, future value, uniform payment values, the interest rate, and the number of periods into their respective fields.
+Straight Line Depreciation, Sum-of-Year deoreciation, and Double Decline Depreciation are solved with the basis cost, salvage value, dereciation life, and the year of the value solving for.
 
-A few resources to get you started if this is your first Flutter project:
+- 
+- 
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
