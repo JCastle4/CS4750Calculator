@@ -49,7 +49,8 @@ class _DepreciationValueState extends State<DepreciationValue> {
       if(salvageController.text.isEmpty){salvage=0;}
       else{salvage = double.parse(salvageController.text);}
       life = double.parse(lifeController.text);
-      periods = int.parse(periodsController.text);
+      if(periodsController.text.isEmpty){periods = 1;}
+      else{periods = int.parse(periodsController.text);}
     });
   }
 
@@ -236,7 +237,10 @@ class _DepreciationValueState extends State<DepreciationValue> {
                             margin: EdgeInsets.only(right: 20, left: 5),
                             child: TextFormField(
                               validator: (value){
-                                if(value!.isNotEmpty && double.parse(value) > 0){
+                                if(dropdownvalue == "Straight Line Method"){
+                                  return null;
+                                }
+                                else if(value!.isNotEmpty && double.parse(value) > 0){
                                   return null;
                                 }
                                 else return 'required';
