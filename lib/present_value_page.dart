@@ -226,7 +226,7 @@ class _PresentValueState extends State<PresentValue> {
                 Row(
                   children: [
                     Expanded(
-                      flex: 30,
+                      flex: 35,
                       child: Container(
                         margin: EdgeInsets.only(left: 20, right: 5, top: 30),
                         child: ElevatedButton(

@@ -85,7 +85,6 @@ class _DepreciationValueState extends State<DepreciationValue> {
               children: <Widget>[
                 //dropdown menu
                 Container(
-                  margin: EdgeInsets.only(left: 40, right: 40, top: 30),
                   child: DropdownButton(
                     value: dropdownvalue,
                     icon: Icon(Icons.keyboard_arrow_down),
@@ -262,7 +261,7 @@ class _DepreciationValueState extends State<DepreciationValue> {
                 Row(
                   children: [
                     Expanded(
-                      flex: 30,
+                      flex: 35,
                       child: Container(
                         margin: EdgeInsets.only(left: 20, right: 5, top: 30),
                         child: ElevatedButton(
